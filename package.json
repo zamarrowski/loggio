@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Lite logger for NodeJS",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zamarrowski/lite-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zamarrowski/lite-logger/issues"
+  },
+  "homepage": "https://github.com/zamarrowski/lite-logger#readme",
   "keywords": [
     "logger",
     "logging"
