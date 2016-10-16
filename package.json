@@ -1,16 +1,16 @@
 {
-  "name": "lite-logger",
-  "version": "0.1.0",
+  "name": "loggio",
+  "version": "0.2.0",
   "description": "Lite logger for NodeJS",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zamarrowski/lite-logger.git"
+    "url": "git+https://github.com/zamarrowski/loggio.git"
   },
   "bugs": {
-    "url": "https://github.com/zamarrowski/lite-logger/issues"
+    "url": "https://github.com/zamarrowski/loggio/issues"
   },
-  "homepage": "https://github.com/zamarrowski/lite-logger#readme",
+  "homepage": "https://github.com/zamarrowski/loggio#readme",
   "keywords": [
     "logger",
     "logging"

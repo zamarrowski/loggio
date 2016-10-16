@@ -2,7 +2,7 @@
 const colors = require('./colors')
 module.exports = (context, defaultColor) => {
 
-  class LiteLogger {
+  class Loggio {
     constructor(context) {
       this.context = context
       this.defaultColor = this.getColor(defaultColor)
@@ -36,5 +36,5 @@ module.exports = (context, defaultColor) => {
 
   }
 
-  return new LiteLogger(context)
+  return new Loggio(context)
 }
