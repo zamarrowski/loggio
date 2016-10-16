@@ -1,0 +1,12 @@
+{
+  "name": "lite-logger",
+  "version": "0.1.0",
+  "description": "Lite logger for NodeJS",
+  "main": "index.js",
+  "keywords": [
+    "logger",
+    "logging"
+  ],
+  "author": "zamarrowski",
+  "license": "ISC"
+}
