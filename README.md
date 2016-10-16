@@ -6,6 +6,7 @@
 * Context
 * Colors
 * Easy to use
+* Support to print JSON
 
 ## Log example with loggio:
 
@@ -17,8 +18,9 @@ Sun Oct 16 2016 16:12:09 GMT+0200 (CEST) | simple-logs.js:4:8 => hello!
 
 * Default log (default color): loggio.log('message')
 * Error log (red): loggio.error('message')
-* Warning log (yellow): loggio.log('message')
+* Warning log (yellow): loggio.warn('message')
 * Info log (blue): loggio.info('message')
+* Success log (green): loggio.success('message')
 
 ## Set default color:
 
@@ -36,7 +38,6 @@ npm install --save loggio
 
 ```
 //example.js
-//Initialize default color to "green".
-let loggio = require('loggio')('green')
+let loggio = require('loggio')()
 loggio.log('hello!') // Sun Oct 16 2016 16:12:09 GMT+0200 (CEST) | simple-logs.js:4:8 => hello!
 ```

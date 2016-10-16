@@ -1,6 +1,6 @@
 {
   "name": "loggio",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A super-light logger with colors for NodeJS.",
   "main": "index.js",
   "repository": {

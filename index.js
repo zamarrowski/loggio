@@ -33,6 +33,10 @@ module.exports = (defaultColor) => {
       this.log(msg, this.getColor('blue'), this.getFilePostion())
     }
 
+    success(msg) {
+      this.log(msg, this.getColor('green'), this.getFilePostion())
+    }
+
     getFilePostion() {
       let stack = new Error().stack.split('\n')
       let matched = stack[3].match(/([\w\d\-_.]*:\d+:\d+)/)
