@@ -1,10 +1,9 @@
 'use strict'
 const colors = require('./colors')
-module.exports = (context, defaultColor) => {
+module.exports = (defaultColor) => {
 
   class Loggio {
-    constructor(context) {
-      this.context = context
+    constructor(defaultColor) {
       this.defaultColor = this.getColor(defaultColor)
     }
 
@@ -12,29 +11,35 @@ module.exports = (context, defaultColor) => {
       return colors[color] || ''
     }
 
-    log(msg, color) {
+    log(msg, color, context) {
       if (typeof msg === 'string') {
-        console.log(`${color || this.defaultColor}${new Date()} | ${this.context} => ${msg}\x1b[0m`)
+        console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} => ${msg}\x1b[0m`)
       } else {
-        console.log(`${color || this.defaultColor}${new Date()} | ${this.context} =>`)
+        console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} =>`)
         console.log(msg)
         console.log(`\x1b[0m`)
       }
     }
 
     error(msg) {
-      this.log(msg, this.getColor('red'))
+      this.log(msg, this.getColor('red'), this.getFilePostion())
     }
 
     warn(msg) {
-      this.log(msg, this.getColor('yellow'))
+      this.log(msg, this.getColor('yellow'), this.getFilePostion())
     }
 
     info(msg) {
-      this.log(msg, this.getColor('blue'))
+      this.log(msg, this.getColor('blue'), this.getFilePostion())
+    }
+
+    getFilePostion() {
+      let stack = new Error().stack.split('\n')
+      let matched = stack[3].match(/([\w\d\-_.]*:\d+:\d+)/)
+      return matched[1]
     }
 
   }
 
-  return new Loggio(context)
+  return new Loggio(defaultColor)
 }

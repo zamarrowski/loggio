@@ -1,6 +1,6 @@
 'use strict'
 //Initialize context to "simple" and default color "green".
-let loggio = require('./../index')('examples', 'green')
+let loggio = require('./../index')('green')
 loggio.log('hello!')
 loggio.log('hello 2!')
 loggio.log({ test: 'this is a json!' })

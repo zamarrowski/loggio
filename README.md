@@ -10,7 +10,7 @@
 ## Log example with loggio:
 
 ```
-Sun Oct 16 2016 15:28:34 GMT+0200 (CEST) | examples => hello!
+Sun Oct 16 2016 16:12:09 GMT+0200 (CEST) | simple-logs.js:4:8 => hello!
 ```
 
 ## Log types:
@@ -25,7 +25,7 @@ Sun Oct 16 2016 15:28:34 GMT+0200 (CEST) | examples => hello!
 Set a default color to use in default logs.
 
 ```
-let loggio = require('loggio')('examples', 'green')
+let loggio = require('loggio')('green')
 ```
 
 ## Setup:
@@ -36,7 +36,7 @@ npm install --save loggio
 
 ```
 //example.js
-//Initialize context to "simple" and default color "green".
-let loggio = require('loggio')('examples', 'green')
-loggio.log('hello!') // Sun Oct 16 2016 15:24:49 GMT+0200 (CEST) | examples => hello!
+//Initialize default color to "green".
+let loggio = require('loggio')('green')
+loggio.log('hello!') // Sun Oct 16 2016 16:12:09 GMT+0200 (CEST) | simple-logs.js:4:8 => hello!
 ```
