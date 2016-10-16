@@ -1,4 +1,4 @@
-# Lite logger for NodeJS
+# A super-light logger with colors for NodeJS.
 
 ## Features:
 
