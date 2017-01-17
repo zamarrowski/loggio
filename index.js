@@ -1,10 +1,11 @@
 'use strict'
 const colors = require('./colors')
-module.exports = (defaultColor) => {
-
+module.exports = (defaultColor, deactivate = false) => {
   class Loggio {
-    constructor(defaultColor) {
+
+    constructor() {
       this.defaultColor = this.getColor(defaultColor)
+      this.deactivate = deactivate
     }
 
     getColor(color) {
@@ -12,12 +13,14 @@ module.exports = (defaultColor) => {
     }
 
     log(msg, color, context) {
-      if (typeof msg === 'string') {
-        console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} => ${msg}\x1b[0m`)
-      } else {
-        console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} =>`)
-        console.log(msg)
-        console.log(`\x1b[0m`)
+      if (!this.deactivate) {
+        if (typeof msg === 'string') {
+          console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} => ${msg}\x1b[0m`)
+        } else {
+          console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} =>`)
+          console.log(msg)
+          console.log(`\x1b[0m`)
+        }
       }
     }
 

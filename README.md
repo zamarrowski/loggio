@@ -7,6 +7,7 @@
 * Colors
 * Easy to use
 * Support to print JSON
+* Deactivate logs
 
 ## Log example with loggio:
 
@@ -28,6 +29,12 @@ Set a default color to use in default logs.
 
 ```
 let loggio = require('loggio')('green')
+```
+
+## Deactivate logs
+Second argument indicate if logs are deactivate.
+```
+let loggio = require('loggio')('white', true)
 ```
 
 ## Setup:
