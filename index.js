@@ -6,18 +6,23 @@ module.exports = (defaultColor, deactivate = false) => {
     constructor() {
       this.defaultColor = this.getColor(defaultColor)
       this.deactivate = deactivate
+      this.prefix = new Date()
     }
 
     getColor(color) {
       return colors[color] || ''
     }
 
+    setPrefix(prefix) {
+      this.prefix = prefix
+    }
+
     log(msg, color, context) {
       if (!this.deactivate) {
         if (typeof msg === 'string') {
-          console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} => ${msg}\x1b[0m`)
+          console.log(`${color || this.defaultColor}${this.prefix} | ${context || this.getFilePostion()} => ${msg}\x1b[0m`)
         } else {
-          console.log(`${color || this.defaultColor}${new Date()} | ${context || this.getFilePostion()} =>`)
+          console.log(`${color || this.defaultColor}${this.prefix} | ${context || this.getFilePostion()} =>`)
           console.log(msg)
           console.log(`\x1b[0m`)
         }
