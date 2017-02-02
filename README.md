@@ -1,6 +1,6 @@
 # A super-light logger with colors for NodeJS.
 
-[![example](./examples/loggio_examples.gif)]
+![example](./examples/loggio_examples.gif)
 
 ## Features:
 
