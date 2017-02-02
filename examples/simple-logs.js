@@ -10,3 +10,7 @@ loggio.info('this is a info message!')
 loggio.success('this is a success message!')
 loggio.setPrefix('My prefix')
 loggio.log('Log with custom prefix')
+loggio.showSpinner('Loading...')
+setTimeout(() => {
+  loggio.stopSpinner()
+}, 4000);

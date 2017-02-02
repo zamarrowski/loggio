@@ -7,6 +7,8 @@ module.exports = (defaultColor, deactivate = false) => {
       this.defaultColor = this.getColor(defaultColor)
       this.deactivate = deactivate
       this.prefix = new Date()
+      this.spinnerInterval = null
+      this.stream = null
     }
 
     getColor(color) {
@@ -49,6 +51,50 @@ module.exports = (defaultColor, deactivate = false) => {
       let stack = new Error().stack.split('\n')
       let matched = stack[3].match(/([\w\d\-_.]*:\d+:\d+)/)
       return matched[1]
+    }
+
+    showSpinner(text = '') {
+      this.stream = process.stderr
+      let spinnerCharacter = this.getSpinnerCharacter()
+      let msg = this.getMessageToSpinner(spinnerCharacter, text)
+      this.stream.write(msg)
+      this.spinnerInterval = setInterval(() => {
+        this.clearSpinner()
+        spinnerCharacter = this.getSpinnerCharacter(spinnerCharacter)
+        msg = this.getMessageToSpinner(spinnerCharacter, text)
+        this.stream.write(msg)
+      }, 800)
+    }
+
+    clearSpinner() {
+      this.stream.clearLine()
+      this.stream.cursorTo(0)
+    }
+
+    getSpinnerCharacter(step) {
+      if (!step || step == '|') {
+        return '/'
+      } else if (step == '/') {
+        return '-'
+      } else if (step == '-') {
+        return '\\'
+      } else if (step == '\\') {
+        return '|'
+      }
+    }
+
+    getMessageToSpinner(step, text) {
+      if (text) {
+        text = String(text)
+        return `${step} ${text}`
+      } else {
+        return step
+      }
+    }
+
+    stopSpinner() {
+      clearInterval(this.spinnerInterval)
+      this.clearSpinner()
     }
 
   }

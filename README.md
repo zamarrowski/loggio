@@ -1,5 +1,7 @@
 # A super-light logger with colors for NodeJS.
 
+[![example](./examples/loggio_examples.gif)]
+
 ## Features:
 
 * Timestamps
@@ -9,6 +11,7 @@
 * Support to print JSON
 * Deactivate logs
 * Custom prefix
+* Show loading spinner
 
 ## Log example with loggio:
 
@@ -47,6 +50,12 @@ let loggio = require('loggio')('white', true)
 loggio.setPrefix('My prefix')
 loggio.log('Log with custom prefix')
 // My prefix | simple-logs.js:12:8 => Log with custom prefix
+```
+
+## Show loading spinner:
+```
+loggio.showSpinner('Loading...') // Optional message...
+loggio.stopSpinner()
 ```
 
 ## Setup:
