@@ -8,7 +8,10 @@ module.exports = (defaultColor, deactivate = false) => {
       this.deactivate = deactivate
       this.prefix = new Date()
       this.spinnerInterval = null
-      this.stream = null
+      this.spinnerStream = null
+      this.loadingBarInterval = null
+      this.loadingBarStream = null
+      this.loadingBarProgress = 0
     }
 
     getColor(color) {
@@ -54,21 +57,21 @@ module.exports = (defaultColor, deactivate = false) => {
     }
 
     showSpinner(text = '') {
-      this.stream = process.stderr
+      this.spinnerStream = process.stderr
       let spinnerCharacter = this.getSpinnerCharacter()
       let msg = this.getMessageToSpinner(spinnerCharacter, text)
-      this.stream.write(msg)
+      this.spinnerStream.write(msg)
       this.spinnerInterval = setInterval(() => {
-        this.clearSpinner()
+        this.clearStream(this.spinnerStream)
         spinnerCharacter = this.getSpinnerCharacter(spinnerCharacter)
         msg = this.getMessageToSpinner(spinnerCharacter, text)
-        this.stream.write(msg)
+        this.spinnerStream.write(msg)
       }, 800)
     }
 
-    clearSpinner() {
-      this.stream.clearLine()
-      this.stream.cursorTo(0)
+    clearStream(stream) {
+      stream.clearLine()
+      stream.cursorTo(0)
     }
 
     getSpinnerCharacter(step) {
@@ -94,7 +97,41 @@ module.exports = (defaultColor, deactivate = false) => {
 
     stopSpinner() {
       clearInterval(this.spinnerInterval)
-      this.clearSpinner()
+      this.clearStream(this.spinnerStream)
+    }
+
+    showLoadingBar() {
+      this.loadingBarStream = process.stderr
+      let progress = this.getProgressLoadingBar(this.loadingBarProgress)
+      this.loadingBarStream.write(progress)
+      this.loadingBarInterval = setInterval(() => {
+        this.clearStream(this.loadingBarStream)
+        progress = this.getProgressLoadingBar(this.loadingBarProgress)
+        this.loadingBarStream.write(progress)
+      }, 800)
+    }
+
+    getProgressLoadingBar(progress) {
+      let progressBar = '['
+      for (var count = 0; count < 100; count++) {
+        if (count < Math.floor(progress)) {
+          progressBar += '='
+          if (count == Math.floor(progress) - 1) progressBar += '>'
+        } else {
+          progressBar += ' '
+        }
+      }
+      progressBar += `] ${Math.floor(progress)} %`
+      return progressBar
+    }
+
+    setProgressLoadingBar(progress) {
+      this.loadingBarProgress = progress
+    }
+
+    stopLoadingBar() {
+      clearInterval(this.loadingBarInterval)
+      this.clearStream(this.loadingBarStream)
     }
 
   }

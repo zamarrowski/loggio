@@ -12,6 +12,7 @@
 * Deactivate logs
 * Custom prefix
 * Show loading spinner
+* Show loading bar
 
 ## Log example with loggio:
 
@@ -56,6 +57,13 @@ loggio.log('Log with custom prefix')
 ```
 loggio.showSpinner('Loading...') // Optional message...
 loggio.stopSpinner()
+```
+
+## Show loading bar:
+```
+loggio.showLoadingBar()
+loggio.setProgressLoadingBar(80) //Update the progress
+loggio.stopLoadingBar()
 ```
 
 ## Setup:

@@ -11,6 +11,20 @@ loggio.success('this is a success message!')
 loggio.setPrefix('My prefix')
 loggio.log('Log with custom prefix')
 loggio.showSpinner('Loading...')
+
 setTimeout(() => {
   loggio.stopSpinner()
-}, 4000);
+}, 4000)
+
+setTimeout(() => {
+  loggio.showLoadingBar()
+  let loadingBarInterval = setInterval(() => {
+    let progress = Math.floor(Math.random() * 100 + 1)
+    loggio.setProgressLoadingBar(progress)
+  }, 1000)
+
+  setTimeout(() => {
+    loggio.stopLoadingBar()
+    clearInterval(loadingBarInterval)
+  }, 5000)
+}, 5000)
